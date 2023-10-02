@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0f6e3251-de11-425c-9400-f83ce005de9f">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\Ingeniero Brayan\\Dropbox\\Desarrollo\\NetBeansProjects\\CiMed\\src\\reportes\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT CURDATE() AS hoy, pacientes.doc, CONCAT(pacientes.nombre1,' ', pacientes.nombre2) AS nombrePaciente,CONCAT( pacientes.apellido1,' ', pacientes.apellido2) AS apellidosPaciente,CONCAT(medicos.nombre,' ', medicos.apellidos) AS medico, citas.hora FROM pacientes, medicos, citas WHERE pacientes.doc = citas.pacientes_docpaciente AND medicos.idmedicos = citas.medicos_idmedicos AND citas.dia=CURDATE() AND citas.estado='ASIGNADA' ORDER BY hora ASC]]>
+	</queryString>
+	<field name="hoy" class="java.sql.Date"/>
+	<field name="doc" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombrePaciente" class="java.lang.String"/>
+	<field name="apellidosPaciente" class="java.lang.String"/>
+	<field name="medico" class="java.lang.String"/>
+	<field name="hora" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<title>
+		<band height="50" splitType="Stretch">
+			<staticText>
+				<reportElement x="198" y="0" width="361" height="41" uuid="c2944146-9c11-4284-8948-03b9bec41c03"/>
+				<textElement>
+					<font fontName="SansSerif" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE CITAS DIARIAS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="607" y="0" width="182" height="20" uuid="4c6b4a68-dd71-40fa-9f1b-d177e28df4e2"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hoy}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="524" y="0" width="83" height="20" uuid="ef374abe-e8b9-42b6-849c-6c4c65f59467"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Citas para:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="21" y="2" width="100" height="20" uuid="0ad3561d-ecb9-4220-94ac-49a510165f34"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DOCUMENTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="179" y="2" width="100" height="20" uuid="b001d235-610d-448e-9924-b1aa09325fb8"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="335" y="2" width="100" height="20" uuid="9d3a599a-21c5-4938-ab55-02a871ce72d1"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[APELLIDOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="488" y="0" width="100" height="20" uuid="8b2c571f-be21-4d44-b4fc-cffc07bde7df"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MEDICO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="649" y="2" width="100" height="20" uuid="b262d9dc-fa15-4549-8515-e1f191606f5f"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HORA]]></text>
+			</staticText>
+			<line>
+				<reportElement x="2" y="34" width="800" height="1" uuid="0961ff87-d484-451c-b1a3-0525094f5a10"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="28" splitType="Stretch">
+			<textField>
+				<reportElement x="21" y="0" width="100" height="20" uuid="fcb7fbc5-c1c1-4a98-bd69-323c9a75b7a1"/>
+				<textFieldExpression><![CDATA[$F{doc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="179" y="0" width="100" height="20" uuid="e87cce77-2f5a-4ef6-a4c5-896c54f3e9b5"/>
+				<textFieldExpression><![CDATA[$F{nombrePaciente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="335" y="0" width="100" height="20" uuid="e8b89a7b-6dea-4980-b8ce-380054587744"/>
+				<textFieldExpression><![CDATA[$F{apellidosPaciente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="488" y="0" width="100" height="20" uuid="c62f0a40-db95-40b6-9e0f-772307ec8738"/>
+				<textFieldExpression><![CDATA[$F{medico}]]></textFieldExpression>
+			</textField>
+			<textField pattern="hh:mm a">
+				<reportElement x="649" y="0" width="100" height="20" uuid="4c529857-6bc9-49f1-be60-207121cbf36c"/>
+				<textFieldExpression><![CDATA[$F{hora}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="2" y="20" width="800" height="1" uuid="332bf8ac-d93a-4bb9-8047-3daff63eba09"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="21" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="649" y="7" width="66" height="20" uuid="4d2bb28a-4707-468f-ba8c-4ac859dc8783"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="715" y="7" width="40" height="20" uuid="8d63366a-ac5c-4a0a-bcf3-73c3f185b69b"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="86" y="17" width="487" height="20" uuid="3f44d992-c38a-49a9-b77c-de97a8dd0596"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[REPORTE GENERADO EN EL SISGECM - SISTEMA DE GESTIÓN DE CITAS MÉDICAS]]></text>
+			</staticText>
+			<image>
+				<reportElement x="21" y="0" width="51" height="50" uuid="bc2116e6-79aa-4a98-bfa3-bdc30be96534"/>
+				<imageExpression><![CDATA["C:\\Users\\Ingeniero Brayan\\Dropbox\\Desarrollo\\NetBeansProjects\\CiMed\\src\\img\\icono.png"]]></imageExpression>
+			</image>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="34" splitType="Stretch">
+			<textField>
+				<reportElement x="411" y="4" width="100" height="20" uuid="21595b64-1c45-4d20-9546-51e816bad2fd"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_COUNT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="255" y="4" width="156" height="20" uuid="d813bde2-3849-402d-82f7-5dc677428b8f"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL CITAS PARA HOY:]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>
