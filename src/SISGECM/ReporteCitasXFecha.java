@@ -4,11 +4,7 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.view.JasperViewer;
 
 
@@ -50,6 +46,11 @@ public class ReporteCitasXFecha extends javax.swing.JFrame {
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(251, 135, -1, -1));
 
         mesinicio_cmb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO", "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE" }));
+        mesinicio_cmb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mesinicio_cmbActionPerformed(evt);
+            }
+        });
         getContentPane().add(mesinicio_cmb, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 120, -1));
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
@@ -91,7 +92,10 @@ public class ReporteCitasXFecha extends javax.swing.JFrame {
             Map parametros = new HashMap();
             parametros.put("mesinicio", mesinicio);
             parametros.put("mesfinal", mesfin);
-            jr = (JasperReport) JRLoader.loadObject(getClass().getResource("/reportes/CitasDosMeses.jasper"));
+            
+            System.out.println(parametros.values());
+            //jr = (JasperReport) JRLoader.loadObject(getClass().getResource("/reportes/CitasDosMeses.jasper"));
+            jr = JasperCompileManager.compileReport(getClass().getResourceAsStream("/reportes/CitasDosMeses.jrxml"));
             JasperPrint jp = JasperFillManager.fillReport(jr, parametros,c.getConexion());
             JasperViewer jv = new JasperViewer(jp, false);
             jv.setTitle("Reporte de Citas Entre Meses");
@@ -102,6 +106,10 @@ public class ReporteCitasXFecha extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_generar_btnActionPerformed
+
+    private void mesinicio_cmbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mesinicio_cmbActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mesinicio_cmbActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

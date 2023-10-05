@@ -3,6 +3,7 @@ package SISGECM;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
@@ -462,7 +463,9 @@ public class Principal extends JFrame {
 //            String report = "src/reportes/CitasMes.jasper";
             JasperReport jr = null;
             
-            jr = (JasperReport) JRLoader.loadObject(getClass().getResource("/reportes/CitasMes.jasper"));
+            //jr = (JasperReport) JRLoader.loadObject(getClass().getResource("/reportes/CitasMes.jasper"));
+            
+            jr = JasperCompileManager.compileReport(getClass().getResourceAsStream("/reportes/CitasMes.jrxml"));
             
             JasperPrint jprint = JasperFillManager.fillReport(jr, null, conexion);
             
@@ -530,10 +533,13 @@ public class Principal extends JFrame {
         try {
     
             Connection conexion  = c.getConexion();
-//            File report = new File("src/reportes/CitasHoy.jasper");
+           File report = new File("src/reportes/CitasHoy.jasper");
             JasperReport jr = null;
             
-            jr = (JasperReport) JRLoader.loadObject(getClass().getResource("/reportes/CitasHoy.jasper"));
+            //jr = (JasperReport) JRLoader.loadObject(getClass().getResource("/reportes/CitasHoy.jasper"));
+            
+            jr = JasperCompileManager.compileReport(getClass().getResourceAsStream("/reportes/CitasHoy.jrxml"));
+            //jr = (JasperReport) JRLoader.loadObject(report);
             
             JasperPrint jprint = JasperFillManager.fillReport(jr, null, conexion);
             

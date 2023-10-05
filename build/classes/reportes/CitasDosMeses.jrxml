@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 8.2.0.final using JasperReports Library version 6.20.3-415f9428cffdb6805c6f85bbb29ebaf18813a2ab  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cf992c5f-f6a5-4218-b6ea-2e1615985e97">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
@@ -13,7 +14,7 @@ citas.dia AS Dia, citas.hora AS Hora
 FROM citas,medicos,pacientes
 WHERE
 citas.pacientes_docpaciente=pacientes.doc AND citas.medicos_idmedicos=medicos.idmedicos
-AND YEAR(citas.dia) = YEAR(CURDATE()) AND DATE_FORMAT(citas.dia,'%c') BETWEEN $P{mesinicio} AND $P{mesfinal} ORDER BY citas.dia ASC]]>
+AND YEAR(citas.dia) = YEAR(CURDATE()) AND MONTH(citas.dia) BETWEEN $P{mesinicio} AND $P{mesfinal} ORDER BY citas.dia ASC]]>
 	</queryString>
 	<field name="Documento" class="java.lang.Integer"/>
 	<field name="Nombre" class="java.lang.String">
@@ -167,9 +168,9 @@ AND YEAR(citas.dia) = YEAR(CURDATE()) AND DATE_FORMAT(citas.dia,'%c') BETWEEN $P
 				</textElement>
 				<text><![CDATA[REPORTE GENERADO EN EL SISGECM - SISTEMA DE GESTIÓN DE CITAS MÉDICAS]]></text>
 			</staticText>
-			<image>
+			<image onErrorType="Blank">
 				<reportElement x="0" y="4" width="51" height="50" uuid="dd4af552-3b0d-4d0c-be00-18f3788eaa53"/>
-				<imageExpression><![CDATA["C:\\Users\\Ingeniero Brayan\\Dropbox\\Desarrollo\\NetBeansProjects\\CiMed\\src\\img\\icono.png"]]></imageExpression>
+				<imageExpression><![CDATA["../img/icono.png"]]></imageExpression>
 			</image>
 			<textField>
 				<reportElement x="432" y="34" width="80" height="20" uuid="b1649f23-0774-4274-abc9-364a9be22fdd"/>

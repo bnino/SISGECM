@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 8.2.0.final using JasperReports Library version 6.20.3-415f9428cffdb6805c6f85bbb29ebaf18813a2ab  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0f6e3251-de11-425c-9400-f83ce005de9f">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["C:\\Users\\Ingeniero Brayan\\Dropbox\\Desarrollo\\NetBeansProjects\\CiMed\\src\\reportes\\"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["src/reportes/"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT CURDATE() AS hoy, pacientes.doc, CONCAT(pacientes.nombre1,' ', pacientes.nombre2) AS nombrePaciente,CONCAT( pacientes.apellido1,' ', pacientes.apellido2) AS apellidosPaciente,CONCAT(medicos.nombre,' ', medicos.apellidos) AS medico, citas.hora FROM pacientes, medicos, citas WHERE pacientes.doc = citas.pacientes_docpaciente AND medicos.idmedicos = citas.medicos_idmedicos AND citas.dia=CURDATE() AND citas.estado='ASIGNADA' ORDER BY hora ASC]]>
@@ -138,9 +139,9 @@
 				</textElement>
 				<text><![CDATA[REPORTE GENERADO EN EL SISGECM - SISTEMA DE GESTIÓN DE CITAS MÉDICAS]]></text>
 			</staticText>
-			<image>
+			<image onErrorType="Blank">
 				<reportElement x="21" y="0" width="51" height="50" uuid="bc2116e6-79aa-4a98-bfa3-bdc30be96534"/>
-				<imageExpression><![CDATA["C:\\Users\\Ingeniero Brayan\\Dropbox\\Desarrollo\\NetBeansProjects\\CiMed\\src\\img\\icono.png"]]></imageExpression>
+				<imageExpression><![CDATA["../img/icono.png"]]></imageExpression>
 			</image>
 		</band>
 	</pageFooter>
